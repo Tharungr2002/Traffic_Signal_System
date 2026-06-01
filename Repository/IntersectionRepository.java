@@ -8,6 +8,8 @@ import java.util.Map;
 public class IntersectionRepository {
     Map<Integer , Intersection> intersections;
     Map<Integer , IntersectionCycle> cycles;
+    int nextId = 1;
+
     public boolean exist(int id) {
         return intersections.containsKey(id);
     }
@@ -18,5 +20,21 @@ public class IntersectionRepository {
 
     public void updateCycle(int id, IntersectionCycle intersectionCycle) {
         cycles.put(id, intersectionCycle);
+    }
+
+    public Intersection find(int id) {
+        if(intersections.containsKey(id)) {
+            return intersections.get(id);
+        }
+        return null;
+    }
+
+    public void update(Intersection intersection) {
+        intersections.put(intersection.getId(), intersection);
+
+    }
+
+    public int getNextId() {
+        return nextId++;
     }
 }
