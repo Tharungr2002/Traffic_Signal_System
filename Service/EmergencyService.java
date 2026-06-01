@@ -11,6 +11,7 @@ import java.util.UUID;
 public class EmergencyService {
     private EmergencyRepository emergencyRepository;
     private IntersectionRepository intersectionRepository;
+    private IntersectionService intersectionService;
 
     public EmergencyService(EmergencyRepository emergencyRepository,
                             IntersectionRepository intersectionRepository) {
@@ -29,12 +30,18 @@ public class EmergencyService {
         emergencyRepository.save(emergencyRequest);
 
         //pause cycle
+        intersectionService.pauseCycle(id,duration,direction,intersection);
 
         //set all dir red
+        intersectionService.setAllSignalToRed(intersection);
 
         //set emergency direction green
+        intersectionService.setGreen(intersection,direction);
 
+        intersection.setEmergencyMode(true);
+        intersection.setEmergencyDirection(direction);
 
+        System.out.println("Emergency signal opened for + " + duration);
 
     }
 

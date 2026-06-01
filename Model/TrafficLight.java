@@ -4,7 +4,6 @@ import Model.State.RedState;
 import Model.State.TrafficLightState;
 
 public class TrafficLight {
-    private int intersectionId;
     private Direction direction;
     private TrafficLightState currentState;
 
@@ -33,9 +32,6 @@ public class TrafficLight {
         return currentState.getCurrentState();
     }
 
-    public void setIntersectionId(int intersectionId) {
-        this.intersectionId = intersectionId;
-    }
 
     public void setDirection(Direction direction) {
         this.direction = direction;
@@ -45,9 +41,6 @@ public class TrafficLight {
         this.currentState = currentState;
     }
 
-    public int getIntersectionId() {
-        return intersectionId;
-    }
 
     public Direction getDirection() {
         return direction;

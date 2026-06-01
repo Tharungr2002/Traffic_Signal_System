@@ -10,6 +10,14 @@ public class Intersection {
     private boolean isEmergencyMode;
     private boolean isPaused;
 
+    public Direction getEmergencyDirection() {
+        return emergencyDirection;
+    }
+
+    public void setEmergencyDirection(Direction emergencyDirection) {
+        this.emergencyDirection = emergencyDirection;
+    }
+
     public Intersection(int id, String name) {
         this.id = id;
         this.name = name;
@@ -51,5 +59,34 @@ public class Intersection {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void turnToRed(Direction direction) {
+        TrafficLight light = trafficLights.get(direction);
+
+        if(light!= null) {
+            if(light.getCurrentState().equals("GREEN")) {
+                System.out.println("Turn to yellow and to red");
+                light.turnYellow();
+                light.turnRed();
+            }
+            if(light.getCurrentState().equals("RED")) {
+                System.out.println("Already red");
+            }
+            if(light.getCurrentState().equals("YELLOW")) {
+                System.out.println("Turn to Red");
+                light.turnRed();
+            }
+            else {
+                light.turnRed();
+            }
+        }
+    }
+
+    public void setGreen(Direction direction) {
+        TrafficLight light = trafficLights.get(direction);
+        light.turnGreen();
+
+
     }
 }

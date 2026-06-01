@@ -37,4 +37,8 @@ public class IntersectionRepository {
     public int getNextId() {
         return nextId++;
     }
+
+    public IntersectionCycle findCycle(int id) {
+        return cycles.get(id);
+    }
 }
