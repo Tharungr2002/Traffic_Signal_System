@@ -15,4 +15,13 @@ public class EmergencyRepository {
     public int getNextId() {
         return nextId++;
     }
+
+    public EmergencyRequest findEmerReq(int id) {
+        for(EmergencyRequest request : emergencyRequestMap.values()) {
+            if(request.getIntersectionId() == id && request.isActive()) {
+                return request;
+            }
+        }
+        return null;
+    }
 }

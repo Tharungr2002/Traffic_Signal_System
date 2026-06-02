@@ -4,6 +4,10 @@ import Repository.EmergencyRepository;
 
 public class EmergencyRequest {
     private int id;
+    private int intersectionId;
+    private int duration;
+    private Direction direction;
+    private boolean isActive;
 
     public int getIntersectionId() {
         return intersectionId;
@@ -12,11 +16,6 @@ public class EmergencyRequest {
     public void setIntersectionId(int intersectionId) {
         this.intersectionId = intersectionId;
     }
-
-    private int intersectionId;
-    private int duration;
-    private Direction direction;
-    private boolean isActive;
 
     public EmergencyRequest(int id, int intersectionId, int duration, Direction direction) {
         this.id = id;

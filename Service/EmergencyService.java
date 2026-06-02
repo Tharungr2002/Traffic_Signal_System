@@ -3,6 +3,7 @@ package Service;
 import Model.Direction;
 import Model.EmergencyRequest;
 import Model.Intersection;
+import Model.IntersectionCycle;
 import Repository.EmergencyRepository;
 import Repository.IntersectionRepository;
 
@@ -46,18 +47,31 @@ public class EmergencyService {
     }
 
     public void EndEmergency(int id) {
+        Intersection intersection = intersectionRepository.find(id);
+        if(intersection == null) {
+            System.out.println("Intersection not found");
+            return;
+        }
         //get emergency id
-
+        EmergencyRequest emergencyRequest = emergencyRepository.findEmerReq(id);
+        if(emergencyRequest == null) {
+            System.out.println("Emer req not found");
+            return;
+        }
         //set all sig to red
+        intersectionService.setAllSignalToRed(intersection);
 
         //deactivate emer req
+        emergencyRequest.setActive(false);
+        intersection.setPaused(false);
+        intersection.setEmergencyMode(false);
+        intersection.setEmergencyDirection(null);
 
         //resume cycle
-
-
-
-
+        IntersectionCycle cycle = intersectionRepository.findCycle(id);
+        cycle.setPaused(false);
     }
+
 
 
 }
